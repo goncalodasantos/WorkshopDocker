@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+
+  postgis:
+   image: postgres
+   volumes:
+     - data:/var/lib/postgresql/data
+     - logspgsql:/var/log/postgresql
+   environment:
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: postgres
+   expose:
+     - "5432"
+   networks:
+     - local
+  
+  api:
+    build: ./api/.
+    volumes:
+      - ./api/apicode:/code
+    command: python app.py
+    ports:
+      - "5000:5000"
+    networks:
+      - local
+    depends_on:
+      - postgis
+
+    
+volumes:
+  data:
+  logspgsql:
+
+networks:
+  local:
