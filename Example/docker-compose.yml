@@ -1,8 +1,8 @@
-version: '2'
+version: '3'
 
 services:
 
-  postgis:
+  postgres:
    image: postgres
    volumes:
      - data:/var/lib/postgresql/data
@@ -25,7 +25,7 @@ services:
     networks:
       - local
     depends_on:
-      - postgis
+      - postgres
 
     
 volumes:
