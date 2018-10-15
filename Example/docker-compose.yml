@@ -19,9 +19,9 @@ services:
     build: ./api/.
     volumes:
       - ./api/apicode:/code
-    command: python app.py
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
-      - "5000:5000"
+      - "8000:8000"
     networks:
       - local
     depends_on:
