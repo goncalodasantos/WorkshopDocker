@@ -27,6 +27,18 @@ services:
     depends_on:
       - postgres
 
+      
+  node:
+    build: ./node/.
+    command: yarn start
+    volumes:
+      - ./node/nodecode:/testapp
+    ports:
+      - "3000:3000"
+    networks:
+      - local
+
+
     
 volumes:
   data:
